@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 jobs:
-  android_run_test:
+  android_build:
 
     runs-on: ubuntu-latest
 
@@ -27,3 +27,16 @@ jobs:
     
     - name: Test with Gradle
       run: ./gradlew test --stacktrace
+  
+  ios_build:
+    
+    runs-on: macos-latest
+    
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build IOS
+      uses: sparkfabrik/ios-build-action@v1.1.0
+      with:
+        project-path: iosApp/iosApp.xcodeproj
+        workspace-path: iosApp/iosApp.xcworkspace
+
