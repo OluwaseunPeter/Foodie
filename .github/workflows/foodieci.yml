@@ -34,9 +34,8 @@ jobs:
     
     steps:
     - uses: actions/checkout@v2
-    - name: Build IOS
-      uses: sparkfabrik/ios-build-action@v1.1.0
-      with:
-        project-path: iosApp/iosApp.xcodeproj
-        workspace-path: iosApp/iosApp.xcworkspace
+    - name: Select Xcode
+      run: sudo xcode-select -switch /Applications/Xcode_12.3.app && /usr/bin/xcodebuild -version
+    - name: Run unit tests
+      run: xcodebuild clean test -scheme iosApp -workspace iosApp/iosApp.xcworkspace -destination 'platform=iOS Simulator,name=iPhone 11 Pro,OS=14.3' | xcpretty && exit ${PIPESTATUS[0]}
 
