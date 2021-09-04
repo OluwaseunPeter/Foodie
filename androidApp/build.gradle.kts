@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     kotlin("android")
     id("com.facebook.testing.screenshot")
+    id("kotlin-android")
 
 }
 
@@ -10,10 +11,16 @@ dependencies {
     implementation("com.google.android.material:material:1.4.0")
     implementation("androidx.appcompat:appcompat:1.2.0")
     implementation("androidx.constraintlayout:constraintlayout:2.0.4")
+
+    //Animation
+    implementation("androidx.dynamicanimation:dynamicanimation:")
+
+    //Facebook screenshot Test
     // Standard Android View Plugins (TextView, etc)
     implementation("com.facebook.testing.screenshot:layout-hierarchy-common:0.14.0")
     // Litho Component Plugins
     implementation("com.facebook.testing.screenshot:layout-hierarchy-litho:0.14.0")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:${rootProject.extra["kotlin_version"]}")
     //Testing framework
     androidTestImplementation("androidx.test:runner:1.1.1")
     testImplementation("junit:junit:4.13.1")
@@ -48,5 +55,9 @@ android {
 
     screenshots{
         referenceDir = "$projectDir/screenshots/"
+    }
+
+    buildFeatures {
+        viewBinding = true
     }
 }

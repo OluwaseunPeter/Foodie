@@ -9,8 +9,8 @@
 
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/menu"
-        android:layout_width="44dp"
-        android:layout_height="44dp"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
         android:background="@drawable/gamepad_circle_outline"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -19,8 +19,8 @@
         />
 
     <androidx.appcompat.widget.AppCompatImageButton
-        android:layout_width="44dp"
-        android:layout_height="44dp"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
         android:background="@drawable/basket_outline"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -110,37 +110,47 @@
         android:textStyle="bold"
         android:textColor="@color/black"/>
 
-    <com.joseph.foodie.android.component.FoodTag
-        android:id="@+id/foodTag"
-        android:layout_width="wrap_content"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/foodTags"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/discover"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginLeft="24dp"
         android:layout_marginTop="8dp"
-        app:cardCornerRadius="14dp"/>
+        tools:listitem="@layout/food_tag"
+        tools:itemCount="10"
+        />
 
-    <com.joseph.foodie.android.component.FoodCard
-        android:id="@+id/foodCard"
-        android:layout_width="200dp"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/foodCards"
+        android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="20dp"
-        app:cardCornerRadius="24dp"
-        app:cardElevation="1dp"
-        app:layout_constraintTop_toBottomOf="@id/foodTag"
+        app:layout_constraintTop_toBottomOf="@id/foodTags"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginLeft="24dp"/>
+        tools:listitem="@layout/food_card"
+        />
 
     <TextView
         android:id="@+id/recommend"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="We Recommend"
-        app:layout_constraintTop_toBottomOf="@id/foodCard"
+        app:layout_constraintTop_toBottomOf="@id/foodCards"
         android:layout_marginLeft="24dp"
         android:layout_marginTop="24dp"
         android:textSize="24sp"
         android:textStyle="bold"
         android:textColor="@color/black"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/food_recommendation"
+        android:layout_width="match_parent"
+        android:layout_height="124dp"
+        app:layout_constraintTop_toBottomOf="@id/recommend"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:background="@color/transparent"
+        tools:listitem="@layout/food_cardv2"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

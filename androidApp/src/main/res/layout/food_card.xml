@@ -9,7 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        >
+        android:animateLayoutChanges="true">
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline_right"
@@ -25,87 +25,102 @@
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.15" />
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:cardCornerRadius="1000dp"
-            android:outlineAmbientShadowColor="@color/colorPrimaryDark"
-            android:outlineSpotShadowColor="@color/design_default_color_error"
-            app:cardElevation="24dp"
-            app:cardPreventCornerOverlap="true"
-            app:layout_constraintRight_toRightOf="@id/guideline_right"
-            app:layout_constraintLeft_toLeftOf="@id/guideline_left"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/details"
-            android:layout_marginTop="24dp"
-            android:layout_marginBottom="12dp"
-            app:layout_constraintDimensionRatio="1:1">
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/sample_food_image"
-                android:scaleType="centerCrop"/>
-
-        </androidx.cardview.widget.CardView>
 
         <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/like"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:maxHeight="44dp"
-            android:maxWidth="44dp"
-            android:background="@drawable/heart_outline"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintRight_toRightOf="@id/icon_left_guide"
             android:layout_marginTop="16dp"
+            android:background="@drawable/heart_outline"
+            android:maxWidth="44dp"
+            android:maxHeight="44dp"
+            app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintLeft_toRightOf="@id/guideline_right"
-            app:layout_constraintDimensionRatio="1:1"/>
+            app:layout_constraintRight_toRightOf="@id/icon_left_guide"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/icon_left_guide"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.95"
-            />
+            app:layout_constraintGuide_percent="0.95" />
 
-    <LinearLayout
-        android:id="@+id/details"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="12dp"
-        >
-        <TextView
+        <androidx.cardview.widget.CardView
+            android:id="@+id/food_card"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="12dp"
+            android:outlineAmbientShadowColor="@color/colorPrimaryDark"
+            android:outlineSpotShadowColor="@color/design_default_color_error"
+            app:cardCornerRadius="1000dp"
+            app:cardElevation="24dp"
+            app:cardPreventCornerOverlap="true"
+            app:layout_constraintBottom_toTopOf="@id/bottom_barrier"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintLeft_toLeftOf="@id/guideline_left"
+            app:layout_constraintRight_toRightOf="@id/guideline_right"
+            app:layout_constraintTop_toTopOf="parent"
+            android:transitionName="food_card">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/food_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/sample_food_image"/>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/bottom_barrier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="top"
+            app:constraint_referenced_ids="block_bottom,details"/>
+
+        <LinearLayout
+            android:id="@+id/details"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Scoops"
-            android:textAlignment="center"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            />
+            android:layout_marginBottom="12dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Starting From"
-            android:textAlignment="center"
-            android:textColor="@color/dune"
-            />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Scoops"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/price"
-            android:layout_width="match_parent"
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Starting From"
+                android:textAlignment="center"
+                android:textColor="@color/dune" />
+
+            <TextView
+                android:id="@+id/price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="$5"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/block_bottom"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="$5"
-            android:textAlignment="center"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            />
-    </LinearLayout>
+            android:orientation="horizontal"
+            app:layout_constraintGuide_end="12dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </merge>
